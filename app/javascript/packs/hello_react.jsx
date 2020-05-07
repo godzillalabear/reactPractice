@@ -30,16 +30,12 @@ const Hello = props => (
 function makeListHandler(el){
 	return () => console.log(el);													
 }
+// const makeListHandler = (el) => {
+//   return () => console.log(el)
+// }
+
 function clickHandler() {
   alert('lalala')
-}
-
-Hello.defaultProps = {
-  name: 'David'
-}
-
-Hello.propTypes = {
-  name: PropTypes.string
 }
 
 document.addEventListener('DOMContentLoaded', () => {
