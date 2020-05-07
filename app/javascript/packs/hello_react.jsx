@@ -12,24 +12,31 @@ let musics = [
   'Tango'
 ]
 
-const makeList = (array) => {
-	return array.map(el => <li onClick={makeListHandler(el)} >{el}</li>)
+// const makeList = (array) => {
+// 	return array.map(el => <li onClick={makeListHandler(el)} >{el}</li>)
+// }
+
+const Item = (props) => {
+  let m = props.music
+  return <li onClick={() => {console.log(m)}}>{m}</li>
 }
 
-const Hello = props => (
+const Hello = (props) => (
   <div>
     <h1 onClick={clickHandler}>Hello {props.name}!</h1>
+    <h2>{props.hehehe}</h2>
     <ul>
-      {
-      	makeList(props.musics)
-      }
+      { props.musics.map((m) => <Item music={m} />) }
     </ul>
   </div>
 )
 
-function makeListHandler(el){
-	return () => console.log(el);													
-}
+// function makeListHandler(el){
+// 	return () => console.log(el);
+// 	// return function(){
+// 	// 	console.log(el);
+// 	// }													
+// }
 // const makeListHandler = (el) => {
 //   return () => console.log(el)
 // }
