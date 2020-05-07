@@ -17,17 +17,24 @@ let musicsDB = [
 // }
 const ItemInput = props => {
 	let [music, setMusic] = useState("");
-	console.log(props)
+	let [disabled, setDisabled] = useState("disabled");
+	// console.log(props)
+	let isDisabled = n => (n >= 5) ? '' : 'disabled';
 	// useState returns an array with getter and setter
 	return (
 		<div>
 			<input type="text" 
 				   value={music} 
-				   onChange={(evt) => { setMusic(evt.target.value); }}/>
+				   onChange={(evt) => { 
+				   						setMusic(evt.target.value)
+				   						setDisabled(isDisabled(evt.target.value.length))
+				   					  }}/>
 			<button onClick={()=>{
 									props.addMusic(music);
 									setMusic("");
-								}}> Add music </button>
+								}}
+					disabled={disabled}
+			> Add music </button>
 		</div>
 	);
 }
