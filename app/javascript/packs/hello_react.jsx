@@ -16,8 +16,9 @@ let musics = [
 // 	return array.map(el => <li onClick={makeListHandler(el)} >{el}</li>)
 // }
 
+
 const Item = (props) => {
-  let m = props.music
+  let m = props.music;
   return <li onClick={() => {console.log(m)}}>{m}</li>
 }
 
@@ -25,12 +26,18 @@ const ItemList = (props) => {
 	return props.musics.map(m => <Item music={m}/>)
 }
 
+let appStyle = {
+	color: 'red',
+	fontSize: 20
+}
+
 const App = (props) => (
   <div>
-    <h1 onClick={clickHandler}>Hello {props.name}!</h1>
-    <h2>{props.hehehe}</h2>
+    <h1 onClick={clickHandler} style={appStyle}>Hello {props.name}!</h1>
+    <h2 className="title">{props.hehehe}</h2>
     <ul>
       <ItemList musics={musics}/>
+      
     </ul>
   </div>
 )
