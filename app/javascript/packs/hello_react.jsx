@@ -13,7 +13,7 @@ let musics = [
 ]
 
 const makeList = (array) => {
-	return array.map(el => <li onClick={()=>console.log(el)} >{el}</li>)
+	return array.map(el => <li onClick={makeListHandler(el)} >{el}</li>)
 }
 
 const Hello = props => (
@@ -27,8 +27,8 @@ const Hello = props => (
   </div>
 )
 
-function eleClick(el) {
-	console.log(el);													
+function makeListHandler(el){
+	return () => console.log(el);													
 }
 function clickHandler() {
   alert('lalala')
