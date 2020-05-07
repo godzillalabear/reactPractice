@@ -2,7 +2,7 @@
 // like app/views/layouts/application.html.erb. All it does is render <div>Hello React</div> at the bottom
 // of the page.
 
-import React from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
@@ -15,7 +15,21 @@ let musics = [
 // const makeList = (array) => {
 // 	return array.map(el => <li onClick={makeListHandler(el)} >{el}</li>)
 // }
-
+const ItemInput = props => {
+	let [music, setMusic] = useState("");
+	// useState returns an array with getter and setter
+	return (
+		<div>
+			<input type="text" 
+				   value={music} 
+				   onChange={(evt) => {
+						// console.log(evt.target.value);
+						setMusic(evt.target.value);
+					}}/>
+			<button> Add music </button>
+		</div>
+	);
+}
 
 const Item = (props) => {
   let m = props.music;
@@ -37,7 +51,7 @@ const App = (props) => (
     <h2 className="title">{props.hehehe}</h2>
     <ul>
       <ItemList musics={musics}/>
-      
+      <ItemInput />
     </ul>
   </div>
 )
