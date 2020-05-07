@@ -6,13 +6,23 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
+let musics = [
+  'Jazz',
+  'KPop',
+  'Tango'
+]
+
+const makeList = (array) => {
+	array.map(el => <li>{el}</li>)
+}
+
 const Hello = props => (
   <div>
     <h1 onClick={clickHandler}>Hello {props.name}!</h1>
     <ul>
-      <li>apple</li>
-      <li>banana</li>
-      <li>cherry</li>
+      {
+      	makeList(props.musics)
+      }
     </ul>
   </div>
 )
@@ -31,7 +41,7 @@ Hello.propTypes = {
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" />,
+    <Hello name="React" musics={musics}/>,
     // document.body.appendChild(document.createElement('div')),
     document.getElementById("contianer"),
   )
