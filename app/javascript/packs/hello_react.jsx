@@ -21,12 +21,16 @@ const Item = (props) => {
   return <li onClick={() => {console.log(m)}}>{m}</li>
 }
 
-const Hello = (props) => (
+const ItemList = (props) => {
+	return props.musics.map(m => <Item music={m}/>)
+}
+
+const App = (props) => (
   <div>
     <h1 onClick={clickHandler}>Hello {props.name}!</h1>
     <h2>{props.hehehe}</h2>
     <ul>
-      { props.musics.map((m) => <Item music={m} />) }
+      <ItemList musics={musics}/>
     </ul>
   </div>
 )
@@ -47,7 +51,7 @@ function clickHandler() {
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" musics={musics}/>,
+    <App name="React" musics={musics} hehehe="hehehe"/>,
     // document.body.appendChild(document.createElement('div')),
     document.getElementById("contianer"),
   )
