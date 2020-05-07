@@ -17,6 +17,10 @@ const Hello = props => (
   </div>
 )
 
+function clickHandler() {
+  alert('lalala')
+}
+
 Hello.defaultProps = {
   name: 'David'
 }
@@ -28,6 +32,7 @@ Hello.propTypes = {
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Hello name="React" />,
-    document.body.appendChild(document.createElement('div')),
+    // document.body.appendChild(document.createElement('div')),
+    document.getElementById("contianer"),
   )
 })
