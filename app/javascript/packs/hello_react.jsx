@@ -6,7 +6,7 @@ import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-let musics = [
+let musicsDB = [
   'Jazz',
   'KPop',
   'Tango'
@@ -17,16 +17,17 @@ let musics = [
 // }
 const ItemInput = props => {
 	let [music, setMusic] = useState("");
+	console.log(props)
 	// useState returns an array with getter and setter
 	return (
 		<div>
 			<input type="text" 
 				   value={music} 
-				   onChange={(evt) => {
-						// console.log(evt.target.value);
-						setMusic(evt.target.value);
-					}}/>
-			<button> Add music </button>
+				   onChange={(evt) => { setMusic(evt.target.value); }}/>
+			<button onClick={()=>{
+									props.addMusic(music);
+									setMusic("");
+								}}> Add music </button>
 		</div>
 	);
 }
@@ -45,16 +46,24 @@ let appStyle = {
 	fontSize: 20
 }
 
-const App = (props) => (
-  <div>
-    <h1 onClick={clickHandler} style={appStyle}>Hello {props.name}!</h1>
-    <h2 className="title">{props.hehehe}</h2>
-    <ul>
-      <ItemList musics={musics}/>
-      <ItemInput />
-    </ul>
-  </div>
-)
+const App = (props) => {
+	const [musics, setMusic] = useState(musicsDB);
+
+  	const appendMusic = (newMusic) => {
+    	setMusic([...musics, newMusic])
+ 	}
+	 return(
+	 	  <div>
+		    <h1 onClick={clickHandler} style={appStyle}>Hello {props.name}!</h1>
+		    <h2 className="title">{props.hehehe}</h2>
+		    <ul>
+		      <ItemList musics={musics}/>
+		      <ItemInput addMusic={appendMusic}/>
+		    </ul>
+		  </div>
+	 	)
+
+}
 
 // function makeListHandler(el){
 // 	return () => console.log(el);
@@ -72,7 +81,7 @@ function clickHandler() {
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <App name="React" musics={musics} hehehe="hehehe"/>,
+    <App name="React" hehehe="hehehe"/>,
     // document.body.appendChild(document.createElement('div')),
     document.getElementById("contianer"),
   )
